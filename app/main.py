@@ -4,7 +4,7 @@ from __future__ import annotations
 class Animal:
     class AliveList(list):
         def __str__(self) -> str:
-            return f"[{", ".join(repr(a) for a in self)}]"
+            return f'[{", ".join(repr(a) for a in self)}]'
 
     alive = AliveList()
 
