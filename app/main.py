@@ -1,7 +1,10 @@
+from __future__ import annotations
+
+
 class Animal:
     class AliveList(list):
         def __str__(self) -> str:
-            return "[" + ", ".join(repr(a) for a in self) + "]"
+            return f"[{", ".join(repr(a) for a in self)}]"
 
     alive = AliveList()
 
@@ -18,7 +21,7 @@ class Animal:
         )
 
     @classmethod
-    def _remove_if_dead(cls, animal: dict) -> None:
+    def _remove_if_dead(cls, animal: Animal) -> None:
         if animal.health <= 0 and animal in cls.alive:
             cls.alive.remove(animal)
 
@@ -29,7 +32,7 @@ class Herbivore(Animal):
 
 
 class Carnivore(Animal):
-    def bite(self, other: dict) -> None:
+    def bite(self, other: Animal) -> None:
         if (
             isinstance(other, Herbivore)
             and not other.hidden
